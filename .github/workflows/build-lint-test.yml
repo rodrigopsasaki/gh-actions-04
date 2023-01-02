@@ -25,6 +25,16 @@ jobs:
     needs: build
     runs-on: ubuntu-22.04
     steps:
+      - name: Fetch the code from hosted repository
+        uses: actions/checkout@v3
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Lint
         run: npm run lint
@@ -33,6 +43,16 @@ jobs:
     needs: lint
     runs-on: ubuntu-22.04
     steps:
+      - name: Fetch the code from hosted repository
+        uses: actions/checkout@v3
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Test
         run: npm test
