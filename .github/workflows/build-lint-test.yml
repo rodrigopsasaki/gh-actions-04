@@ -19,18 +19,18 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm build
+        run: npm run build
 
-  Lint:
+  lint:
     needs: build
     runs-on: ubuntu-22.04
     steps:
 
       - name: Lint
-        run: npm lint
+        run: npm run lint
 
-  Test:
-    needs: build
+  test:
+    needs: lint
     runs-on: ubuntu-22.04
     steps:
 
