@@ -1,0 +1,39 @@
+name: Run `build`, `lint` and `test`
+
+on: [push, workflow_dispatch]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Fetch the code from hosted repository
+        uses: actions/checkout@v3
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm build
+
+  Lint:
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+
+      - name: Lint
+        run: npm lint
+
+  Test:
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+
+      - name: Test
+        run: npm test
+
